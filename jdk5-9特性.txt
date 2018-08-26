@@ -1,0 +1,410 @@
+1. JDK和JRE的区别是什么？
+JDK，开发java程序用的开发包，JDK里面有java的运行环境(JRE)，包括client和server端的。需要配置环境变量。。。。
+JRE，运行java程序的环境，JVM，JRE里面只有client运行环境，安装过程中，会自动添加PATH。
+
+2. 简述jdk1.5的特性
+1).自动装箱与拆箱：
+2).枚举
+3).静态导入，如：import staticjava).lang).System).out
+4).可变参数（Varargs）
+5).内省（Introspector），主要用于操作JavaBean中的属性，通过getXxx/setXxx。一般的做法是通过类Introspector来获取某个对象的BeanInfo信息，
+然后通过BeanInfo来获取属性的描述器（PropertyDescriptor），通过这个属性描述器就可以获取某个属性对应的getter/setter方法，然后我们就可以通过反射机制来调用这些方法。
+6).泛型(Generic)（包括通配类型/边界类型等）
+7).For-Each循环
+8).注解
+9).协变返回类型：实际返回类型可以是要求的返回类型的一个子类型
+
+3. 简述jdk1.6的特性
+1). AWT新增加了两个类:Desktop和SystemTray，其中前者用来通过系统默认程序来执行一个操作，如使用默认浏览器浏览指定的URL,
+用默认邮件客户端给指定的邮箱发邮件,用默认应用程序打开或编辑文件(比如,用记事本打开以txt为后缀名的文件),
+用系统默认的打印机打印文档等。后者可以用来在系统托盘区创建一个托盘程序
+2).使用JAXB2来实现对象与XML之间的映射，可以将一个Java对象转变成为XML格式，反之亦然
+3). StAX，一种利用拉模式解析(pull-parsing)XML文档的API。类似于SAX，也基于事件驱动模型。之所以将StAX加入到JAXP家族，是因为JDK6中的JAXB2和JAX-WS 2).0中都会用StAX。
+4).使用Compiler API，动态编译Java源文件，如JSP编译引擎就是动态的，所以修改后无需重启服务器。
+5).轻量级Http Server API，据此可以构建自己的嵌入式HttpServer,它支持Http和Https协议。
+6).插入式注解处理API(PluggableAnnotation Processing API)
+7).提供了Console类用以开发控制台程序，位于java).io包中。据此可方便与Windows下的cmd或Linux下的Terminal等交互。
+8).对脚本语言的支持如: ruby,groovy, javascript
+9).Common Annotations，原是J2EE 5).0规范的一部分，现在把它的一部分放到了J2SE 6).0中
+10).嵌入式数据库 Derby
+
+4. 简述jdk1.7的特性
+1.对Java集合（Collections）的增强支持，可直接采用[]、{}的形式存入对象，采用[]的形式按照索引、键值来获取集合中的对象。
+2.在Switch中可用String
+3.数值可加下划线用作分隔符（编译时自动被忽略）
+4.支持二进制数字，如：int binary= 0b1001_1001;
+5.简化了可变参数方法的调用
+6.调用泛型类的构造方法时，可以省去泛型参数，编译器会自动判断。
+7.Boolean类型反转，空指针安全,参与位运算
+8.char类型的equals方法: booleanCharacter.equalsIgnoreCase(char ch1, char ch2)
+9.安全的加减乘除: Math.safeToInt(longv); Math.safeNegate(int v); Math.safeSubtract(long v1, int v2);Math.safeMultiply(int v1, int v2)
+10).Map集合支持并发请求，注HashTable是线程安全的，Map是非线程安全的。但此处更新使得其也支持并发。另外，Map对象可这样定义：Map map = {name:"xxx",age:18};
+
+5. 简述jdk1.8的特性
+1).接口的默认方法：即接口中可以声明一个非抽象的方法做为默认的实现，但只能声明一个，且在方法的返回类型前要加上“default”关键字。
+2).Lambda 表达式：是对匿名比较器的简化，
+3).函数式接口：是指仅仅只包含一个抽象方法的接口，要加@FunctionalInterface注解
+4).使用 :: 关键字来传递方法或者构造函数引用
+5).多重注解
+6).还增加了很多与函数式接口类似的接口以及与Map相关的API等……
+
+6. 简述jdk1.9的特性
+1、Java 平台级模块系统
+当启动一个模块化应用时， JVM 会验证是否所有的模块都能使用，这基于 `requires` 语句——比脆弱的类路径迈进了一大步。模块允许你更好地强制结构化封装你的应用并明确依赖。
+2). Linking
+ 当你使用具有显式依赖关系的模块和模块化的 JDK 时，新的可能性出现了。你的应用程序模块现在将声明其对其他应用程序模块的依赖以及对其所使用的 JDK 模块的依赖。
+ 为什么不使用这些信息创建一个最小的运行时环境，其中只包含运行应用程序所需的那些模块呢？ 这可以通过 Java 9 中的新的 jlink 工具实现。
+ 你可以创建针对应用程序进行优化的最小运行时映像而不需要使用完全加载 JDK 安装版本。
+3). JShell : 交互式 Java REPL
+许多语言已经具有交互式编程环境，Java 现在加入了这个俱乐部。您可以从控制台启动 jshell ，并直接启动输入和执行 Java 代码。 
+jshell 的即时反馈使它成为探索 API 和尝试语言特性的好工具。
+4). 改进的 Javadoc
+Javadoc 现在支持在 API 文档中的进行搜索。另外，Javadoc 的输出现在符合兼容 HTML5 标准。此外，你会注意到，每个 Javadoc 页面都包含有关 JDK 模块类或接口来源的信息。
+5). 集合工厂方法
+通常，您希望在代码中创建一个集合（例如，List 或 Set ），并直接用一些元素填充它。 实例化集合，几个 “add” 调用，使得代码重复。 Java 9，添加了几种集合工厂方法：
+Set<Integer> ints = Set).of(1,2,3);
+List<String> strings = List).of("first","second");
+除了更短和更好阅读之外，这些方法也可以避免您选择特定的集合实现。 事实上，从工厂方法返回已放入数个元素的集合实现是高度优化的。这是可能的，因为它们是不可变的：
+在创建后，继续添加元素到这些集合会导致 “UnsupportedOperationException” 。
+6). 改进的 Stream API
+长期以来，Stream API 都是 Java 标准库最好的改进之一。通过这套 API 可以在集合上建立用于转换的申明管道。
+在 Java 9 中它会变得更好。Stream 接口中添加了 4 个新的方法：dropWhile, takeWhile, ofNullable。
+还有个 iterate 方法的新重载方法，可以让你提供一个 Predicate (判断条件)来指定什么时候结束迭代：
+IntStream).iterate(1, i -> i < 100, i -> i + 1)).forEach(System).out::println);
+第二个参数是一个 Lambda，它会在当前 IntStream 中的元素到达 100 的时候返回 true。因此这个简单的示例是向控制台打印 1 到 99。
+除了对 Stream 本身的扩展，Optional 和 Stream 之间的结合也得到了改进。现在可以通过 Optional 的新方法 `stram` 将一个 Optional 对象转换为一个(可能是空的) 
+Stream 对象：
+Stream<Integer> s = Optional).of(1)).stream();
+在组合复杂的 Stream 管道时，将 Optional 转换为 Stream 非常有用。
+7). 私有接口方法
+使用 Java 9，您可以向接口添加私有辅助方法来解决此问题：
+如果您使用默认方法开发 API ，那么私有接口方法可能有助于构建其实现。
+8). HTTP/2
+Java 9 中有新的方式来处理 HTTP 调用。这个迟到的特性用于代替老旧的 `HttpURLConnection` API，并提供对 WebSocket 和 HTTP/2 的支持。
+注意：新的 HttpClient API 在 Java 9 中以所谓的孵化器模块交付。也就是说，这套 API 不能保证 100% 完成。不过你可以在 Java 9 中开始使用这套 API：
+9). 多版本兼容 JAR
+我们最后要来着重介绍的这个特性对于库的维护者而言是个特别好的消息。当一个新版本的 Java 出现的时候，你的库用户要花费数年时间才会切换到这个新的版本。
+这就意味着库得去向后兼容你想要支持的最老的 Java 版本 (许多情况下就是 Java 6 或者 7)。这实际上意味着未来的很长一段时间，
+你都不能在库中运用 Java 9 所提供的新特性。幸运的是，多版本兼容 JAR 功能能让你创建仅在特定版本的 Java 环境中运行库程序时选择使用的 class 版本：
+
+7. 简述jdk1.10的特性
+1).一个局部变量类型推断，通过增强语言特性将类型推断扩展到局部变量，目的是减少与编码相关的“仪式”，同时保持对静态类型的安全承诺。
+
+2).一个干净的垃圾收集器接口，用来改善垃圾收集器源代码之间的隔离效果，这样可以为HotSpot 虚拟机中的内部垃圾收集代码提供更好的模块化功能，也可以更容易向 HotSpot 添加新的垃圾收集器。
+
+并行、完整的 G1 垃圾收集器，通过实现并行性来改善最坏情况下的延迟问题。
+
+3).启用 HotSpot 将对象堆分配给用户指定的备用内存设备（如 NVDIMM 内存模块），这个特性也侧面预示了未来的系统可能会采用异构的内存架构。
+
+4).在 Linux / x64 平台上以实验性方式启用基于 Java 的即时编译器
+（https://www.infoworld.com/article/3187868/application-development/oracles-java-on-java-experiment-picks-up-steam.html）。
+
+5).将 JDK 的多个存储库合并成一个，简化开发。目前的代码库被分解成了多个库，容易出现源代码的管理问题。
+
+6).应用程序数据共享，通过跨进程共享通用类的元数据，减少空间占用及启动时长。
+
+7).线程本地握手，不执行全局 VM 安全点也能对线程执行回调，同时实现单线程停止回调。
+
+
+8. 什么是自动拆箱与自动装箱？
+自动装箱：把基本类型用它们对应的包装类包装起来，使它们具有对象的特质，可以调用所对应的包装类所定义的方法，比如toString()等。
+自动拆箱：跟自动装箱的方向相反，将Integer及Double这样的包装类的对象重新简化为基本类型的数据。
+
+9.高级for循环可以遍历map集合吗?
+不可以。但是可以将map转成set后再使用foreach语句。
+
+10.高级for循环和传统for循环的区别：
+高级for循环在使用时，必须要明确被遍历的目标。这个目标，可以是Collection集合或者数组，如果遍历Collection集合，
+在遍历过程中还需要对元素进行操作，比如删除，需要使用迭代器。
+如果遍历数组，还需要对数组元素进行操作，建议用传统for循环因为可以定义角标通过角标操作元素。如果只为遍历获取，可以简化成高级for循环，它的出现为了简化书写。
+
+11.在迭代集合的过程中，不能对集合进行增删操作（会报并发访问异常）；可以用迭代器的方法进行操作，是否正确？
+对的
+
+12.什么是静态导入？
+导入了类中的所有静态成员，简化静态成员的书写。
+举例：
+import static java.util.Collections.*;  //导入了Collections类中的所有静态成员
+
+13.在使用增强for循环时，不能对元素进行赋值；是否正确？
+正确
+
+14.如果在参数列表中使用了可变参数，可变参数必须定义在参数列表开头，是否正确？
+错误,必须定义在结尾，也就是必须是最后一个参数，否则编译会失败。
+
+15.下列哪些是enum的常见方法？D
+A.compareTo(E o) B.equals(Object other) C.getDeclaringClass() D.以上都是
+
+16.泛型是什么，它的好处有哪些？
+jdk1.5版本以后出现的一个安全机制。表现格式：<>
+好处：
+1)：将运行时期的问题ClassCastException问题转换成了编译失败，体现在编译时期，程序员就可以解决问题。
+2)：避免了强制转换的麻烦
+
+17.什么时候用泛型类呢？
+当类中的操作的引用数据类型不确定的时候，以前用的Object来进行扩展的，现在可以用泛型来表示。这样可以避免强转的麻烦，而且将运行问题转移到的编译时期。
+
+18.下列哪个选项是泛型中的通配符？A
+A.? B./ C.\ D.%
+
+19.在JDK1.6中，AWT新增加了下列两个类？B
+A.Annotation和Castor B.Desktop和SystemTray C.pull-parsing和Iterator
+
+20.StAX是什么？
+StAX(JSR 173)是JDK1.6.0中除了DOM和SAX之外的又一种处理XML文档的API
+
+21. Compiler API的作用？
+动态编译Java源文件，Compiler API结合反射功能就可以实现动态的产生Java代码并编译执行这些代码。
+
+22.下列哪些说法是正确的？D
+A.RolesAllowed，PermitAll，DenyAll不能同时应用到一个类或方法上
+B.标注在方法上的RolesAllowed，PermitAll，DenyAll会覆盖标注在类上的RolesAllowed，PermitAll，DenyAll
+C.RunAs，RolesAllowed，PermitAll，DenyAll和DeclareRoles还没有加到Java SE 6.0上来
+D.以上都对
+ 
+23.JDK1.6中使用下列哪个选项来实现对象与XML之间的映射？D
+A.JDBC  B.Console C.JAXB  D.JAXB2
+
+24.如何理解JDK1.6中的新特性插入式注解处理API？
+(Pluggable Annotation Processing API)，插入式注解处理API(JSR 269)提供一套标准API来处理Annotations.JSR 269用Annotation Processor在编译期间而不是运行期间
+处理Annotation,Annotation Processor相当于编译器的一个插件,所以称为插入式注解处理.
+
+25.什么是元数据:
+元数据就是 关于数据的数据
+
+26.如果用一个catch块处理多个异常，可以用下列哪个符号将它们分开？A
+A.|  B.||  C./  D.\
+
+27.如果catch捕获的异常变量在catch子句中被重新赋值，那么异常类型检查的分析将不会启用,是否正确？
+对的
+
+28.try-with-resources语句是什么？
+try-with-resources语句是一个声明一个或多个资源的try语句。一个资源作为一个对象，必须在程序结束之后关闭。try-with-resources语句确保在语句的最后每个资源都被关闭，
+任何实现了Java.lang.AutoCloseable和java.io.Closeable的对象都可以使用try-with-resource来实现异常处理和关闭资源
+
+29.jdk1.7中异常抛出顺序
+在JDK1.7之前如果rd.readLine()与rd.close()都抛出异常则只会抛出finally块中的异常，不会抛出rd.readLine()中的异常，
+这样经常会导致得到的异常信息不是调用程序想要得到的。
+在JDK1.7及以后采用了try-with-resource机制，如果在try-with-resource声明中抛出异常(如文件无法打开或无法关闭)的同时rd.readLine()也抛出异常，
+则只会抛出rd.readLine()的异常。
+
+30.在JDK1.7中，摒弃了Java集合接口的实现类，如：ArrayList、HashSet和HashMap。而是直接采用[]、{}的形式存入对象，
+采用[]的形式按照索引、键值来获取集合中的对象，是否正确？
+正确
+
+31.在JDK1.7中，switch中可以使用字串吗？
+可以
+
+32.jdk7之前，你必须用try{}finally{}在try内使用资源，在finally中关闭资源，不管try中的代码是否正常退出或者异常退出。
+jdk7之后，你可以不必要写finally语句来关闭资源，只要你在try()的括号内部定义要使用的资源，是否正确？
+正确
+
+33.在JAVA SE 7，整数类型例如（byte，short，int，long）能够用下列哪个选项来表示？
+A.0b   B.0B   C.以上都对
+
+34.在JAVA SE 7和以后的版本中，下划线字符（_）能够出现在数字字面量的数字之间的任何位置，是否正确，它的作用是什么？
+正确。这个功能可以用来对一个数字字面量根据位数分组，从而提高你代码的可读性。比如，如果你的代码包含一些数字有很多的位数，
+你能够用下划线字符把位数分为三组，类似于你用一个像逗号或者一个空格作为分隔符。
+
+35.以下代码是否能编译通过？为什么？
+List<String> list = new ArrayList<>();
+list.add("A");
+list.addAll(new ArrayList<>());
+不能，JAVA SE 7 支持泛型实例创建的类型推断，你只有在构造器的参数类型在上下文中明确指定的情况下才能使用类型推断。
+
+36.构造函数在泛型和非泛型类中都是通用的，是否正确？
+正确，
+
+37.声明它们自己的正式参数类型
+
+38.如何理解Lambda 表达式？
+lambda是方法的实现
+lambda是延迟执行的 
+lambda运算符：所有的lambda表达式都是用新的lambda运算符 " => ",可以叫他，“转到”或者 “成为”。运算符将表达式分为两部分，左边指定输入参数，右边是lambda的主体。
+        lambda表达式：
+               1.一个参数：param=>expr
+               2.多个参数：（param-list）=>expr
+			   
+39.下列哪些说法是正确的？D
+A.Lambda表达式不会从超类（supertype）中继承任何变量名，也不会引入一个新的作用域
+B.Lambda表达式基于词法作用域，也就是说lambda表达式函数体里面的变量和它外部环境的变量具有相同的语义（也包括lambda表达式的形式参数）。
+C.this关键字及其引用，在Lambda表达式内部和外部也拥有相同的语义。
+D.以上都对
+
+40.下列哪些说法是正确的？D
+A.在 Lambda 表达式当中被引用的变量的值不可以被更改。
+B.在 Lambda 表达式当中不允许声明一个与局部变量同名的参数或者局部变量
+C.Lambda表达式中是无法访问到默认方法的.
+D.以上都对
+
+41.如何理解jdk1.8中Predicate接口？
+Predicate 接口只有一个参数，返回boolean类型。该接口包含多种默认方法来将Predicate组合成其他复杂的逻辑（比如：与，或，非）：
+
+42.jdk1.8中，Function 接口和Supplier 接口的区别？
+Function 接口有一个参数并且返回一个结果，并附带了一些可以和其他函数组合的默认方法（compose, andThen）
+Supplier 接口返回一个任意范型的值，和Function接口不同的是该接口没有任何参数
+
+43.什么是Map 映射？
+Map是Java JDK提供的一个接口，通过键值对的映射关系存储数据。
+一个键只能对应一个值
+一个值可以对应多个键
+Map提供了三种Collection视图：键集、值集、键-值映射集，分别有方法KeySet()、ValueSet()和entrySet()实现
+
+44.什么是Annotation（注解）？
+注解(Annotation)相当于一种标记，在程序中加入注解就等于为程序打上某种标记，没有加，则等于没有任何标记，以后，
+javac编译器、开发工具和其他程序可以通过反射来了解你的类及各种元素上有无何种标记，
+看你的程序有什么标记，就去干相应的事，标记可以加在包、类，属性、方法，方法的参数以及局部变量上。
+
+45.一个注解的生命周期有哪三个阶段？
+java源文件是一个阶段，class文件是一个阶段，内存中的字节码是一个阶段
+在自定义注解时就可以使用Retention注解指明自定义注解的生命周期，自定义注解的生命周期是在RetentionPolicy.SOURCE阶段(java源文件阶段)，
+还是在RetentionPolicy.CLASS阶段(class文件阶段)，或者是在RetentionPolicy.RUNTIME阶段(内存中的字节码运行时阶段)，
+根据JDK提供的API可以知道默认是在RetentionPolicy.CLASS阶段 (JDK的API写到：the retention policy defaults to RetentionPolicy.CLASS.)
+
+46.注解可以增加属性吗？
+注解可以看成是一种特殊的类，既然是类，那自然可以为类添加属性，　
+其实从代码的写法上来看，注解更像是一种特殊的接口，
+注解的属性定义方式就和接口中定义方法的方式一样，而应用了注解的类可以认为是实现了这个特殊的接口
+
+47.jdk1.8 中default关键字的作用？
+在java里面，我们通常都是认为接口里面是只能有抽象方法，不能有任何方法的实现的，
+那么在jdk1.8里面打破了这个规定，引入了新的关键字default，通过使用default修饰方法，可以让我们在接口里面定义具体的方法实现，
+举例：public interface NewCharacter {    
+    public void test1();    
+    public default void test2(){
+        System.out.println("我是新特性1");
+    }
+}
+ 
+48.jdk1.8 中，当你需要使用方法引用时 ，目标引用放在分隔符::前，是否正确？
+正确
+
+49.流的定义
+流是Java API的新成员，它允许我们以声明性方式处理数据集合（通过查询语句来表达，而不是临时编写一个实现）。
+就现在来说，我们可以把它们看成遍历数据集的高级迭代器。此外，流还可以透明地并行处理，也就是说我们不用写多线程代码了。
+
+50.流的操作类型分为哪两种？
+Intermediate：一个流可以后面跟随零个或多个 intermediate 操作。其目的主要是打开流，做出某种程度的数据映射/过滤，然后返回一个新的流，
+交给下一个操作使用。这类操作都是惰性化的（lazy），就是说，仅仅调用到这类方法，并没有真正开始流的遍历。
+
+Terminal：一个流只能有一个 terminal 操作，当这个操作执行后，流就被使用“光”了，无法再被操作。所以这必定是流的最后一个操作。
+Terminal 操作的执行，才会真正开始流的遍历，并且会生成一个结果，或者一个 side effect。
+
+51.HashMap 中关于红黑树的三个关键参数？
+TREEIFY_THRESHOLD
+UNTREEIFY_THRESHOLD
+MIN_TREEIFY_CAPACITY
+
+52.HashMap的工作原理?
+HashMap是基于hashing的原理，我们使用put(key, value)存储对象到HashMap中，使用get(key)从HashMap中获取对象。
+当我们给put()方法传递键和值时，我们先对键调用hashCode()方法，返回的hashCode用于找到bucket位置来储存Entry对象。
+
+53.如果两个键的hashcode相同，如何获取值对象?
+当我们调用get()方法，HashMap会使用键对象的hashcode找到bucket位置，然后获取值对象。如果有两个值对象储存在同一个bucket，
+将会遍历LinkedList直到找到值对象。找到bucket位置之后，会调用keys.equals()方法去找到LinkedList中正确的节点，最终找到要找的值对象。
+(当程序通过 key 取出对应 value 时，系统只要先计算出该 key 的 hashCode() 返回值，
+在根据该 hashCode 返回值找出该 key 在 table 数组中的索引，然后取出该索引处的 Entry，最后返回该 key 对应的 value 即可。)
+
+54.什么时候采用HashMap中的红黑树？
+HashMap中链长度大于8时采取红黑树的结构存储，红黑树，除了添加，效率高于链表结构。
+
+55.Java8中的四大核心函数式接口是哪些？
+1).Consumer<T> :消费型接口
+    void accept(T t);	
+2).Supplier<T> :供给型接口
+    T get();
+3).Function<T,R> :函数型接口
+    R apply(T t);
+4).Predicate<T> :断言型接口
+    boolean test(T t);	
+
+56.如何理解Stream流？
+一系列流水线式的中间操作。流是数据渠道，用于操作数据源（集合、数组等）所生成的元素序列。
+注意： 
+①Stream自己不会存储元素。 
+②Stream不会改变源对象。相反，会返回持有新结果的新Stream。 
+③Stream操作是延迟执行的。这意味着他们会等到需要结果的时候才执行。
+操作的三个步骤： 
+1、创建一个流Stream 
+2、中间操作 
+3、终止操作
+@Test
+    public void test1(){
+        //1. 可以通过Collections系列集合提供的stream()或parallelStream()
+        List<String> list = new ArrayList<>();
+        Stream<String> stream = list.stream();
+
+        //2. 通过Arrays中的静态方法stream()获取数组流
+        Employee[] emps = new Employee[10];
+        Stream<Employee> stream1 = Arrays.stream(emps);
+
+        //3. 通过Stream类中的静态方法of()
+        Stream<String> stream3 = Stream.of("", "", "");
+
+        //4. 创建无限流
+        //迭代
+        Stream.iterate(0,x -> x+2).limit(10).forEach(System.out::println);
+
+        //生成
+        Stream<Double> generate = Stream.generate(() -> Math.random());
+        generate.limit(5).forEach(System.out::println);
+    }
+	
+57.jdk1.9中Linking的作用？
+当使用具有显式依赖关系的模块和模块化的JDK时，你的应用程序模块现在将声明其对其他应用程序模块的依赖以及对其所使用的JDK模块的依赖。
+使用这些信息创建一个最小的运行时环境，
+其中只包含运行应用程序所需的那些模块时？可以通过Java9中的新的jlink工具实现，你可以创建针对应用程序进行优化的最小运行时映像而不需要使用完全加载JDK按照版本。
+
+58.jdk1.9中JShell的作用？
+交互式Java REPL，可以从控制台启动jshell，并直接启动输入和执行Java代码，交互式shell还可以提供良好的学习环境以及提高生产力
+
+59.jdk1.9中，改进的Javadoc页面都包含下列哪些信息？C
+A.有关JDK模块类的信息  B.接口来源的信息  C.以上都是
+
+60.jdk1.9中，Collection提供用于创建以下哪些选项的工厂方法？D
+A.空List   B.java.util.Set  C.Map  D.以上都是
+
+61.Stream API的作用以及在jdk1.9中的改进？
+在集合上建立用于转换的声明管道，
+在jdk1.9中，提供了dropWhile, takeWhile, ofNullable，iterate 四个方法的新重载方法，可以让你提供一个 Predicate (判断条件)来指定什么时候结束迭代。
+
+62.接口中定义私有方法应遵循的原则
+在Interface中编写私有方法时，我们应该遵循以下规则：
+1).应该使用私有修饰符(private)来定义这些方法。
+2).不能同时使用私有修饰符（private）和abstract来定义这些方法。 
+   “私有”方法意味着完全实现的方法，因为子类不能继承并覆盖此方法。
+   “抽象”方法意味着无实现方法。这里子类应该继承并覆盖此方法。
+3).私有方法必须包含方法体，必须是具体方法。
+4).这些接口私有方法仅在该接口内是有用的或可访问的,无法从接口访问或继承私有方法到另一个接口或类。
+
+63.在集合中统一增加了一个of方法，List/Set/Map都可以调用of方法直接存入key,value,是否正确？
+正确
+
+64.在JDK1.9中：注解@Deprecated的作用是什么？
+可以标记Java API，使用了那些已废弃的API
+
+65.在JDK1.9中针对于JVM日志系统做了什么优化？
+在JDK9中统一了日志，提供了一种解决问题的有效途径。
+　　在以往的低版本中很难知道导致JVM性能问题和导致JVM崩溃的根本原因。不同的JVM对日志的使用是不同的机制和规则，这就使得JVM难以进行调试。
+　　解决这个问题最佳的方法：对所有的JVM组件引入一个单一的系统，这些JVM组件支持细粒度的和易配置的JVM组件。
+
+66.java中锁的机制
+一段synchronized的代码被一个线程执行之前，他要先拿到执行这段代码的权限，在java里边就是拿到某个同步对象的锁（一个对象只有一把锁）；
+ 如果这个时候同步对象的锁被其他线程拿走了，他（这个线程）就只能等了（线程阻塞在锁池等待队列中）。 取到锁后，他就开始执行同步代码(被synchronized修饰的代码）；
+ 线程执行完同步代码后马上就把锁还给同步对象，其他在锁池中等待的某个线程就可以拿到锁执行同步代码了。这样就保证了同步代码在统一时刻只有一个线程在执行。
+ 
+67.什么是死锁，以及避免死锁的常见方法？
+死锁是指两个或两个以上的进程在执行过程中，由于竞争资源或者由于彼此通信而造成的一种阻塞的现象，
+若无外力作用，它们都将无法推进下去。此时称系统处于死锁状态或系统产生了死锁，这些永远在互相等待的进程称为死锁进程。
+死锁的规范定义：集合中的每一个进程都在等待只能由本集合中的其他进程才能引发的事件，那么该组进程是死锁的。
+1)、避免一个线程同时获取多个锁
+2)、避免一个线程在锁内同时占用多个资源，尽量保证每个锁只占用一个资源。
+3)、尝试使用定时锁，使用lock.tryLock(timeout)来替代使用内部锁机制。
+
+68.如何使用JShell？
+安装jdk9并配置环境变量后，就可以在控制台中使用JShell了，更多的命令可以使用/help来查看
+
+
+
+
+
